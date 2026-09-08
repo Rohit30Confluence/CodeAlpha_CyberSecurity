@@ -9,6 +9,9 @@ vars:
     HTTP_PORTS: "80"
 default-rule-path: /etc/suricata/rules
 default-log-dir: /var/log/suricata
+classification-file: /etc/suricata/rules/classification.config
+reference-config-file: /etc/suricata/rules/reference.config
+threshold-file: /etc/suricata/rules/threshold.config
 rule-files:
   - codealpha.rules
 outputs:

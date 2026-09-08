@@ -1,6 +1,7 @@
 services:
   suricata-config-test:
-    image: oisf/suricata:7.0.8
+    # Verified Docker Hub image maintained for Suricata containers.
+    image: jasonish/suricata:7.0.8
     read_only: true
     cap_drop:
       - ALL
@@ -10,4 +11,4 @@ services:
       - ./suricata.yaml:/etc/suricata/suricata.yaml:ro
       - ./rules:/etc/suricata/rules:ro
       - ./logs:/var/log/suricata
-    command: ["-T", "-c", "/etc/suricata/suricata.yaml"]
+    command: ["-T", "-c", "/etc/suricata/suricata.yaml", "-l", "/var/log/suricata"]

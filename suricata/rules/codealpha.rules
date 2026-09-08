@@ -1,5 +1,5 @@
 # CodeAlpha lab rules. SIDs 1000001-1000003 are locally reserved for this project.
 # These rules are for authorised local/lab monitoring only.
-alert tcp any any -> $HOME_NET [23,445,3389] (msg:"CODEALPHA LAB Connection to monitored administrative service"; flow:to_server; classtype:attempted-recon; sid:1000001; rev:1;)
-alert tcp any any -> $HOME_NET any (msg:"CODEALPHA LAB Possible TCP SYN scan"; flags:S; flow:stateless; threshold:type both, track by_src, count 10, seconds 60; classtype:attempted-recon; sid:1000002; rev:1;)
-alert icmp any any -> $HOME_NET any (msg:"CODEALPHA LAB Repeated ICMP echo request"; itype:8; threshold:type both, track by_src, count 5, seconds 60; classtype:attempted-recon; sid:1000003; rev:1;)
+alert tcp any any -> $HOME_NET [23,445,3389] (msg:"CODEALPHA LAB Connection to monitored administrative service"; flow:to_server; sid:1000001; rev:1;)
+alert tcp any any -> $HOME_NET any (msg:"CODEALPHA LAB Possible TCP SYN scan"; flags:S; flow:stateless; threshold:type both, track by_src, count 10, seconds 60; sid:1000002; rev:1;)
+alert icmp any any -> $HOME_NET any (msg:"CODEALPHA LAB Repeated ICMP echo request"; itype:8; threshold:type both, track by_src, count 5, seconds 60; sid:1000003; rev:1;)
