@@ -1,12 +1,170 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CodeAlpha Cyber Security Internship</title><link rel="stylesheet" href="assets/style.css"></head><body>
-<header class="top"><div class="wrap nav"><div class="brand">CodeAlpha / Cyber Security</div><div><a href="tasks.html">Tasks</a><a href="review.html">Review</a><a href="submission.html">Submission</a><a href="feedback.html">Feedback</a></div></div></header>
-<main class="wrap"><div class="hero"><div class="eyebrow">Internship portfolio · September 2026</div><h1>Four security exercises, built as one practical portfolio.</h1><p>A working repository covering packet analysis, phishing awareness, secure coding review and network intrusion detection. The emphasis is on reproducible demonstrations, defensive use and clear limits rather than pretending this is a production security platform.</p><p><span class="tag">Public repository</span> <span class="tag">Python</span> <span class="tag">Scapy</span> <span class="tag">Suricata</span></p></div>
-<section><h2>What I built</h2><div class="grid">
-<div class="card"><span class="tag">01</span><h3>Network Sniffer</h3><p>Packet metadata summarisation with bounded, opt-in capture. Source, destination, protocol, ports and lengths are visible without dumping payload contents.</p></div>
-<div class="card"><span class="tag">02</span><h3>Phishing Awareness</h3><p>A 10-scenario interactive training flow covering lookalike domains, QR links, MFA fatigue, impersonation, malicious updates and reporting.</p></div>
-<div class="card"><span class="tag">03</span><h3>Secure Coding Review</h3><p>A Python AST-based reviewer for selected high-risk constructs, with severity and remediation guidance. Deliberately scoped as an educational static check.</p></div>
-<div class="card"><span class="tag">04</span><h3>Network IDS</h3><p>A Suricata lab with local rules, structured alerts and deterministic offline PCAP replay, alongside a small Python IDS engine.</p></div>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="CodeAlpha Cybersecurity Internship — interactive project lab and submission review">
+<title>CodeAlpha Cybersecurity Lab</title>
+<style>
+:root{--bg:#0b0d0f;--panel:#111519;--panel2:#161b20;--ink:#e8edf2;--muted:#98a4af;--line:#28313a;--accent:#8bd450;--blue:#74b9ff;--red:#ff6b6b;--amber:#f6c85f;--good:#8bd450}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:1180px;margin:auto;padding:0 28px}.top{position:sticky;top:0;z-index:20;background:rgba(11,13,15,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}.nav{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-size:12px;letter-spacing:1.5px;font-weight:800;color:var(--ink)}nav{display:flex;gap:20px}nav a{font-size:13px;color:var(--muted)}nav a.active,nav a:hover{color:var(--ink);text-decoration:none}.hero{padding-top:86px;padding-bottom:72px}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:55px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:2px;color:var(--accent);font-size:11px;font-weight:800}.hero h1,.page h1{font-size:clamp(42px,7vw,76px);line-height:.98;letter-spacing:-2px;margin:14px 0 22px}.hero h1 span{color:var(--accent)}.lead{color:var(--muted);font-size:18px;max-width:730px}.narrow{max-width:760px}.actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}.btn{display:inline-block;border:1px solid var(--line);border-radius:7px;padding:10px 15px;color:var(--ink);background:var(--panel2);cursor:pointer;font:inherit}.btn:hover{text-decoration:none;border-color:#4b5966}.btn.primary{background:var(--accent);border-color:var(--accent);color:#0b0d0f;font-weight:800}.terminal,.console{background:#07090b;border:1px solid #29323a;border-radius:9px;box-shadow:0 20px 50px rgba(0,0,0,.22)}.termbar,.console-head{padding:9px 12px;border-bottom:1px solid #29323a;color:#73808c;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}.termbar i{display:inline-block;width:7px;height:7px;border-radius:50%;background:#48525c;margin-right:5px}.termbar span{margin-left:10px}.terminal pre,.console pre{margin:0;padding:20px;color:#b8c3cc;font:12px/1.7 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap}.section{padding:70px 28px;border-top:1px solid var(--line)}.section-head,.panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px}.section h2,.lab-panel h2{font-size:32px;line-height:1.1;margin:7px 0}.task-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}.task-card,.lab-panel,.evidence,.finding-card,.alert-detail{background:var(--panel);border:1px solid var(--line);border-radius:9px}.task-card{padding:24px;min-height:260px}.task-card h3{font-size:22px;margin:8px 0}.task-card p{color:var(--muted);min-height:50px}.task-no{font:800 12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--accent);letter-spacing:1px}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:4px 9px;font-size:10px;letter-spacing:1px;color:var(--muted);white-space:nowrap}.pill.good{border-color:#395d2c;color:var(--good)}.mini-table{border:1px solid var(--line);margin:18px 0}.mini-table div{display:flex;justify-content:space-between;gap:10px;padding:7px 9px;border-bottom:1px solid var(--line);font:11px ui-monospace,monospace}.mini-table div:last-child{border-bottom:0;color:var(--muted)}.demo-link{background:none;border:0;padding:0;color:var(--blue);font:inherit;cursor:pointer}.finding{border:1px solid #4d3030;background:#1a1212;padding:10px;font-size:12px}.finding span,.severity{color:var(--red);font-weight:800;font-size:10px;letter-spacing:1px}.alert-row{display:flex;gap:10px;align-items:center;border:1px solid var(--line);padding:11px;font-size:12px}.alert-row span:last-child{color:var(--muted)}.dot{width:7px;height:7px;border-radius:50%;display:inline-block}.dot.red{background:var(--red)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-radius:9px;overflow:hidden}.metrics div{padding:24px;border-right:1px solid var(--line)}.metrics div:last-child{border-right:0}.metrics strong{display:block;font-size:32px;color:var(--accent)}.metrics span{color:var(--muted);font-size:12px}.split{display:grid;grid-template-columns:1fr 1fr;gap:50px}.checks{padding:0;list-style:none;color:var(--muted)}.checks li{padding:8px 0;border-bottom:1px solid var(--line)}.checks li:before{content:'✓';color:var(--accent);margin-right:10px}.evidence{overflow:hidden}.e-row{display:flex;justify-content:space-between;gap:20px;padding:14px 16px;border-bottom:1px solid var(--line);font-size:13px}.e-row:last-child{border-bottom:0}.e-row span{color:var(--muted)}.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:25px}.flow div{border:1px solid var(--line);background:var(--panel);padding:15px 18px;border-radius:7px;font-size:13px}.flow span{color:#53616d}.flow .accent-box{border-color:#395d2c;color:var(--accent)}.note{margin-top:0!important;border-left:3px solid var(--accent);background:var(--panel);padding:16px 18px}.footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:12px}.footer .wrap{display:flex;justify-content:space-between}.page{padding-top:60px;padding-bottom:80px}.lab-panel{padding:28px;margin-top:24px}.panel-head{padding-bottom:20px;border-bottom:1px solid var(--line)}.panel-head h2{margin:0}.panel-head p{color:var(--muted);margin:4px 0}.panel-grid,.ids-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:24px}.lab-panel h3{font-size:16px}.lab-panel ul{color:var(--muted)}.small-note{color:var(--muted);font-size:13px}.quiz{margin-top:24px;border:1px solid var(--line);padding:24px}.quiz h3{font-size:22px}.quiz-option{display:block;width:100%;text-align:left;margin:9px 0;padding:12px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:6px;cursor:pointer}.quiz-option:hover{border-color:#4b5966}.quiz-option.selected{border-color:var(--blue)}.quiz-option.correct{border-color:var(--accent)}.quiz-option.wrong{border-color:var(--red)}.quiz-foot{display:flex;justify-content:space-between;align-items:center;margin-top:20px;color:var(--muted);font-size:12px}.code-review{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}.code-review pre{margin:0;background:#07090b;padding:20px;border-radius:7px;overflow:auto;font:12px/1.7 ui-monospace,monospace}.ln{color:#4d5964;margin-right:15px}.finding-card{padding:18px}.finding-card p{color:var(--muted)}.finding-card code{color:var(--amber)}.alert-detail{margin-top:12px}.alert-detail div{display:flex;justify-content:space-between;padding:9px 12px;border-bottom:1px solid var(--line);font-size:12px}.alert-detail div:last-child{border-bottom:0}.alert-detail span{color:var(--muted)}.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}.modal.open{display:flex}.modal-card{max-width:600px;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:25px;position:relative}.close{position:absolute;right:14px;top:10px;background:none;border:0;color:var(--muted);font-size:25px;cursor:pointer}@media(max-width:800px){.hero-grid,.split,.panel-grid,.ids-grid,.code-review{grid-template-columns:1fr}.task-grid{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}.metrics div:nth-child(2){border-right:0}.metrics div{border-bottom:1px solid var(--line)}nav{display:none}.hero{padding-top:55px}.section{padding-top:48px;padding-bottom:48px}}@media(max-width:500px){.metrics{grid-template-columns:1fr}.metrics div{border-right:0}.hero h1,.page h1{font-size:46px}.wrap{padding-left:18px;padding-right:18px}}
+.packet-line{display:grid;grid-template-columns:90px 1fr 18px 1fr 45px 45px;gap:8px;padding:9px 12px;border-bottom:1px solid #1c242b;font:11px ui-monospace,SFMono-Regular,Menlo,monospace}.packet-line:last-child{border-bottom:0}.packet-line span{color:#73808c}.packet-line b{font-weight:500;color:#b8c3cc}
+
+
+/* Single-file navigation layer */
+.site-nav {
+  position: sticky; top: 0; z-index: 1000;
+  display:flex; gap:.45rem; flex-wrap:wrap; align-items:center;
+  padding:.8rem 1rem; border-bottom:1px solid var(--border, #2b3440);
+  background:rgba(10,13,17,.96); backdrop-filter:blur(10px);
+}
+.site-nav .brand { margin-right:auto; font-weight:800; letter-spacing:.02em; }
+.site-nav button {
+  border:1px solid var(--border, #2b3440); background:#11161d; color:inherit;
+  padding:.48rem .72rem; border-radius:7px; cursor:pointer; font:inherit;
+}
+.site-nav button:hover,.site-nav button.active { background:#1b232d; border-color:#667383; }
+.page-section { display:none; }
+.page-section.active { display:block; }
+.single-note {
+  max-width:1200px; margin:1rem auto 0; padding:.65rem 1rem;
+  border:1px solid var(--border, #2b3440); border-radius:8px;
+  font-size:.86rem; opacity:.85;
+}
+@media (max-width:700px) {
+  .site-nav .brand { width:100%; margin-bottom:.25rem; }
+  .site-nav button { flex:1 1 auto; }
+}
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <div class="brand">CODEALPHA / CYBERSECURITY LAB</div>
+  <button data-page="home" class="active">Overview</button>
+  <button data-page="tasks">Tasks</button>
+  <button data-page="review">Technical Review</button>
+  <button data-page="submission">Submission</button>
+  <button data-page="feedback">Engineering Notes</button>
+</header>
+
+<div class="single-note">
+  Single-file edition — HTML, CSS and JavaScript are embedded here so GitHub Pages only needs this one file.
+  The repository remains the source of truth for the actual Python, tests, rules and Suricata lab evidence.
+</div>
+
+
+<section id="home" class="page-section active">
+  <section class="hero wrap"><div class="eyebrow">Defensive security portfolio · September 2026</div><div class="hero-grid"><div><h1>Four security exercises.<br><span>One lab interface.</span></h1><p class="lead">A browser-based presentation layer for the actual Python, Scapy and Suricata work in the repository. Explore the demonstrations here; inspect the implementation and evidence in GitHub.</p><div class="actions"><a class="btn primary" href="#lab">Explore the lab</a><a class="btn" href="https://github.com/Rohit30Confluence/CodeAlpha_CyberSecurity" target="_blank" rel="noopener">Open repository ↗</a></div></div><div class="terminal"><div class="termbar"><i></i><i></i><i></i><span>lab-status</span></div><pre>$ codealpha-security status
+
+PROJECT       CodeAlpha CyberSecurity
+MODE          authorised lab / offline demo
+TASKS         4
+PRIMARY       1 · 2 · 4
+TEST CHECKS   11
+IDS ENGINE    Suricata 7.0.8 lab
+
+[OK] packet metadata demo
+[OK] phishing scenarios
+[OK] static review demo
+[OK] IDS alert replay</pre></div></div></section>
+<section id="lab" class="wrap section"><div class="section-head"><div><div class="eyebrow">Interactive lab</div><h2>Explore each security exercise</h2></div><span class="pill good">DEFENSIVE / CONTROLLED</span></div>
+<div class="task-grid">
+<article class="task-card"><div class="task-no">01</div><h3>Network Sniffer</h3><p>Metadata-only packet inspection. No payload dumping in this presentation layer.</p><div class="mini-table"><div><span>192.0.2.10:49152</span><b>→</b><span>172.28.0.2:445</span></div><div><span>TCP</span><span>54 bytes</span><span>LAB</span></div></div><a href="tasks.html#sniffer">Open demonstration →</a></article>
+<article class="task-card"><div class="task-no">02</div><h3>Phishing Awareness</h3><p>Interactive scenarios based on the repository's 10-question awareness flow.</p><button class="demo-link" data-open="phish">Try a scenario →</button></article>
+<article class="task-card"><div class="task-no">03</div><h3>Secure Coding Review</h3><p>AST-based checks for selected high-risk Python constructs and remediation guidance.</p><div class="finding"><span>HIGH</span><code>subprocess.run(..., shell=True)</code></div><a href="tasks.html#review">Inspect findings →</a></article>
+<article class="task-card"><div class="task-no">04</div><h3>Network IDS / Suricata</h3><p>Deterministic offline PCAP replay producing a real Suricata local-rule alert.</p><div class="alert-row"><span class="dot red"></span><strong>SID 1000001</strong><span>Admin service connection</span></div><a href="tasks.html#ids">Open IDS console →</a></article>
 </div></section>
-<section><h2>Proof over promises</h2><div class="grid"><div class="card"><h3>Reproducible</h3><p>Commands and expected outcomes are documented in the repository. The automated suite covers the core exercises.</p></div><div class="card"><h3>Controlled</h3><p>Network demonstrations are designed for an authorised lab or self-owned environment. The Suricata demonstration uses offline traffic replay.</p></div></div><div class="note"><strong>Repository:</strong> Rohit30Confluence/CodeAlpha_CyberSecurity. The GitHub repository is the source of truth for implementation and test history.</div></section>
-<section class="links"><h2>Walk through the work</h2><p><a href="tasks.html">Task-by-task review →</a></p><p><a href="review.html">Evaluator-style technical review →</a></p><p><a href="submission.html">Submission checklist →</a></p><p><a href="feedback.html">What I would improve next →</a></p></section></main>
-<footer class="footer"><div class="wrap">Prepared as a presentation layer for the CodeAlpha internship repository. Evidence claims should be backed by actual local runs/screenshots.</div></footer></body></html>
+<section class="wrap section"><div class="metrics"><div><strong>11</strong><span>automated checks documented</span></div><div><strong>10</strong><span>phishing awareness scenarios</span></div><div><strong>3</strong><span>local Suricata rules</span></div><div><strong>1</strong><span>deterministic PCAP replay</span></div></div></section>
+<section class="wrap section split"><div><div class="eyebrow">Evidence chain</div><h2>Demo on the left. Source of truth on the right.</h2><p>The website is intentionally not pretending to be the security engine. It visualises controlled examples and points back to the actual repository, reports, rules and test documentation.</p><ul class="checks"><li>Python implementation remains in the repository.</li><li>Suricata configuration and local rules are inspectable.</li><li>Offline replay avoids touching external systems.</li><li>Limitations are stated instead of hidden.</li></ul></div><div class="evidence"><div class="e-row"><span>Source</span><a href="https://github.com/Rohit30Confluence/CodeAlpha_CyberSecurity/tree/main/src" target="_blank">src/ ↗</a></div><div class="e-row"><span>Suricata rules</span><a href="https://github.com/Rohit30Confluence/CodeAlpha_CyberSecurity/blob/main/suricata/rules/codealpha.rules" target="_blank">codealpha.rules ↗</a></div><div class="e-row"><span>Test report</span><a href="https://github.com/Rohit30Confluence/CodeAlpha_CyberSecurity/blob/main/reports/test_report.md" target="_blank">test_report.md ↗</a></div><div class="e-row"><span>Task mapping</span><a href="https://github.com/Rohit30Confluence/CodeAlpha_CyberSecurity/blob/main/docs/task_mapping.md" target="_blank">task_mapping.md ↗</a></div><div class="e-row"><span>Secure review</span><a href="https://github.com/Rohit30Confluence/CodeAlpha_CyberSecurity/blob/main/reports/secure_coding_review_report.md" target="_blank">review report ↗</a></div></div></section>
+<section class="wrap section architecture"><div class="eyebrow">Architecture</div><h2>How the portfolio fits together</h2><div class="flow"><div>Packet metadata</div><span>→</span><div>Phishing decisions</div><span>→</span><div>Code findings</div><span>→</span><div>IDS alerts</div><span>→</span><div class="accent-box">Evidence</div></div></section>
+<section class="wrap section note"><strong>Scope note.</strong> This is an educational defensive portfolio. Live packet capture requires an authorised interface; the Suricata demonstration is an offline lab replay. The browser examples are deterministic presentation data, not claims of live network monitoring.</section>
+</section>
+
+<section id="tasks" class="page-section">
+  <div class="eyebrow">Task walkthrough</div><h1>Implementation, demonstration and evidence</h1><p class="lead narrow">Use this page as the evaluator's guided tour. The implementation remains in GitHub; these panels explain what to inspect and provide small deterministic browser demonstrations.</p>
+<section id="sniffer" class="lab-panel"><div class="panel-head"><span class="task-no">01</span><div><h2>Network Sniffer</h2><p>Bounded packet capture and metadata summarisation.</p></div><span class="pill good">IMPLEMENTED</span></div><div class="console"><div class="console-head">packet-summary</div><div id="packet-list"></div></div><div class="panel-grid"><div><h3>What the implementation shows</h3><ul><li>source and destination IPs</li><li>protocol and packet length</li><li>source and destination ports when available</li><li>bounded, opt-in Scapy capture</li></ul></div><div><h3>Intentional limit</h3><p>Payload contents are omitted from the project demonstration to avoid exposing application data. This keeps the internship demo focused on traffic structure and flow.</p><a href="https://github.com/Rohit30Confluence/CodeAlpha_CyberSecurity/tree/main/src/codealpha_cybersecurity/sniffer" target="_blank">Open sniffer source ↗</a></div></div></section>
+<section id="phishing" class="lab-panel"><div class="panel-head"><span class="task-no">02</span><div><h2>Phishing Awareness</h2><p>10-scenario interactive training flow.</p></div><span class="pill good">IMPLEMENTED</span></div><div class="quiz"><div id="quiz-question"></div><div id="quiz-options"></div><div class="quiz-foot"><span id="quiz-progress"></span><button id="quiz-next" class="btn primary" disabled>Next</button></div></div></section>
+<section id="review" class="lab-panel"><div class="panel-head"><span class="task-no">03</span><div><h2>Secure Coding Review</h2><p>Focused Python AST checks.</p></div><span class="pill">ADDITIONAL WORK</span></div><div class="code-review"><pre><span class="ln">1</span> import subprocess
+<span class="ln">2</span>
+<span class="ln">3</span> subprocess.run(command, shell=True)</pre><div class="finding-card"><div><span class="severity high">HIGH</span><strong> shell=True</strong></div><p>Command execution with shell interpretation can introduce command-injection risk when input is not strictly controlled.</p><strong>Remediation:</strong> prefer argument lists with <code>shell=False</code> and validate inputs.</div></div><p class="small-note">Current repository scope is intentionally narrow: selected high-risk calls are detected through AST inspection. It is not presented as a complete secure-code audit.</p><a href="https://github.com/Rohit30Confluence/CodeAlpha_CyberSecurity/blob/main/reports/secure_coding_review_report.md" target="_blank">Read the actual report ↗</a></section>
+<section id="ids" class="lab-panel"><div class="panel-head"><span class="task-no">04</span><div><h2>Network IDS / Suricata</h2><p>Offline PCAP replay → local rule → alert evidence.</p></div><span class="pill good">VERIFIED LAB</span></div><div class="ids-grid"><div class="console"><div class="console-head">suricata / eve.json</div><pre id="ids-output"></pre></div><div><h3>Alert anatomy</h3><div class="alert-detail"><div><span>SID</span><strong>1000001</strong></div><div><span>Protocol</span><strong>TCP</strong></div><div><span>Source</span><strong>192.0.2.10:49152</strong></div><div><span>Destination</span><strong>172.28.0.2:445</strong></div><div><span>Action</span><strong>alert</strong></div></div><p>Rule monitors a selected administrative service port in the controlled lab. The deterministic PCAP is generated locally and replayed offline.</p></div></div><a href="https://github.com/Rohit30Confluence/CodeAlpha_CyberSecurity/tree/main/suricata" target="_blank">Inspect Suricata lab ↗</a></section>
+</section>
+
+<section id="review" class="page-section">
+  <div class="hero"><div class="eyebrow">Evaluator view</div><h1>Review feedback before submission</h1><p>The portfolio is above the minimum task threshold. The goal now is to make the work easy to verify, not to inflate it.</p></div>
+<section><table><thead><tr><th>Area</th><th>Assessment</th><th>Comment</th></tr></thead><tbody>
+<tr><td>Task 1</td><td class="status">8.5/10</td><td>Good metadata capture and bounded execution. Explain why payloads are intentionally omitted.</td></tr>
+<tr><td>Task 2</td><td class="status">8.5–9/10</td><td>Strong scenario coverage. A short demo makes the training feel like a real deliverable.</td></tr>
+<tr><td>Task 3</td><td style="color:var(--warn);font-weight:750">6.5–7/10</td><td>Useful reviewer and report, but narrower than a full application audit. Do not oversell its scope.</td></tr>
+<tr><td>Task 4</td><td class="status">9/10</td><td>Best direct match to the requirement: actual Suricata configuration, local rules and offline alert validation.</td></tr>
+<tr><td>Testing</td><td class="status">9/10</td><td>Automated checks are documented and cover the core exercises.</td></tr>
+<tr><td>Documentation</td><td class="status">8/10</td><td>Good task mapping, architecture, responsible-use and test documentation.</td></tr>
+<tr><td>Evidence</td><td style="color:var(--warn);font-weight:750">6/10</td><td>Final submission should include genuine screenshots/video from actual runs.</td></tr>
+</tbody></table></section>
+<section><h2>What would impress a reviewer</h2><div class="grid">
+<div class="card"><h3>Show the detection</h3><p>Don't spend the whole video reading code. Run the IDS demo, show the alert, then point to the rule that caused it.</p></div>
+<div class="card"><h3>Show the reasoning</h3><p>For phishing, explain one scenario and why the red flags matter. For secure coding, show one finding and the recommended fix.</p></div>
+<div class="card"><h3>Own the limitations</h3><p>Saying “this is a focused educational reviewer” is more credible than calling it a production SAST platform.</p></div>
+<div class="card"><h3>Keep evidence clean</h3><p>Use only real output. Redact credentials, personal data and private infrastructure details where necessary.</p></div>
+</div></section>
+<section><h2>Bottom line</h2><div class="note"><strong>Submission recommendation: GO.</strong> Tasks 1, 2 and 4 provide a defensible three-task submission. Keep Task 3 in the repository as additional work and describe its scope accurately.</div></section>
+</section>
+
+<section id="submission" class="page-section">
+  <div class="hero"><div class="eyebrow">Before September 20</div><h1>Submission checklist</h1><p>Finish the presentation layer and evidence. Avoid last-minute feature churn.</p></div>
+<section><div class="card"><h3>Repository</h3><ul><li>Repository name follows the required CodeAlpha project naming convention.</li><li>README opens with a clear explanation of all four tasks.</li><li>Tests and reproducible commands are present.</li><li>No secrets, tokens or fabricated evidence are committed.</li></ul></div></section>
+<section><div class="card"><h3>Three strongest demonstrations</h3><ol><li><strong>Sniffer:</strong> run the metadata demonstration and explain the fields.</li><li><strong>Phishing:</strong> complete several scenarios and show the scoring/explanations.</li><li><strong>Suricata:</strong> validate the configuration and, where available, replay the deterministic lab PCAP and show the alert.</li></ol></div></section>
+<section><div class="card"><h3>LinkedIn / video</h3><ul><li>Record a short walkthrough rather than a long screen dump.</li><li>Start with the problem and what was built.</li><li>Show one concrete result from each selected task.</li><li>Link the GitHub repository.</li><li>Tag CodeAlpha as requested by the internship instructions.</li></ul></div></section>
+<section><div class="note warn"><strong>Important:</strong> Do not state that a command was executed if it was only documented. Do not manufacture screenshots. Real evidence is more valuable than polished but unverifiable evidence.</div></section>
+</section>
+
+<section id="feedback" class="page-section">
+  <div class="hero"><div class="eyebrow">Engineering reflection</div><h1>What I would improve next</h1><p>A good internship project should show not only what works, but where the author sees the next engineering step.</p></div>
+<section><div class="grid">
+<div class="card"><span class="tag">Now</span><h3>Submission readiness</h3><p>Prioritise genuine evidence, a clear walkthrough and accurate task mapping. The existing implementation is sufficient to submit three tasks.</p></div>
+<div class="card"><span class="tag">Next</span><h3>Secure review depth</h3><p>Expand the AST reviewer into a controlled sample application audit with more rules, clearer explanations and remediation tests.</p></div>
+<div class="card"><span class="tag">Next</span><h3>Detection engineering</h3><p>Grow the Suricata rule set with better tuning, structured alert review and additional offline test traffic.</p></div>
+<div class="card"><span class="tag">Later</span><h3>Productisation</h3><p>Unify the individual exercises behind a small assessment interface with reports, evidence collection and repeatable lab runs.</p></div>
+</div></section>
+<section><h2>Reviewer takeaway</h2><div class="note"><strong>This is an internship portfolio, not a claim of a finished security product.</strong> The strongest signal is the combination of implementation, testing, defensive boundaries and an honest account of limitations.</div></section>
+</section>
+
+
+<script>
+const packets=[
+ {time:'10:42:11.102',src:'192.0.2.10:49152',dst:'172.28.0.2:445',proto:'TCP',len:'54'},
+ {time:'10:42:11.103',src:'192.0.2.10:49153',dst:'172.28.0.2:445',proto:'TCP',len:'54'},
+ {time:'10:42:11.209',src:'192.0.2.10',dst:'172.28.0.2',proto:'ICMP',len:'98'},
+ {time:'10:42:11.401',src:'172.28.0.2:445',dst:'192.0.2.10:49152',proto:'TCP',len:'60'}
+];
+const phishing=[
+ {q:'A message says your Microsoft 365 account will be disabled in 15 minutes. The link uses a lookalike domain. What is the safest action?',o:['Click quickly and sign in','Open the link in private mode','Verify through the normal portal / known channel','Forward it to coworkers'],a:2,e:'Urgency plus a lookalike domain are strong phishing indicators. Use a known-good route to verify instead of the message link.'},
+ {q:'You receive an unexpected QR code asking you to approve a login. What should you do?',o:['Scan it immediately','Approve only if the logo looks real','Treat it as untrusted and verify through a known channel','Send the QR image to a friend'],a:2,e:'QR codes can hide malicious destinations. The safe pattern is to verify independently before authenticating.'},
+ {q:'Your phone receives repeated MFA prompts you did not initiate. What is the best response?',o:['Approve one to stop the notifications','Ignore it forever','Deny the request and report the activity','Share the code with support'],a:2,e:'MFA fatigue attacks rely on the user eventually approving a prompt. Deny unexpected prompts and report them.'}
+];
+let qi=0,score=0,answered=false;
+function renderPackets(){const el=document.getElementById('packet-list');if(!el)return;el.innerHTML=packets.map(p=>`<div class="packet-line"><span>${p.time}</span><b>${p.src}</b><span>→</span><b>${p.dst}</b><span>${p.proto}</span><span>${p.len} B</span></div>`).join('');}
+function renderQuiz(){const q=document.getElementById('quiz-question'),opts=document.getElementById('quiz-options'),next=document.getElementById('quiz-next'),prog=document.getElementById('quiz-progress');if(!q)return;const item=phishing[qi];answered=false;next.disabled=true;q.innerHTML=`<div class="eyebrow">Scenario ${qi+1} / ${phishing.length}</div><h3>${item.q}</h3>`;opts.innerHTML=item.o.map((x,i)=>`<button class="quiz-option" data-i="${i}">${x}</button>`).join('');prog.textContent=`Score: ${score}`;opts.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{if(answered)return;answered=true;const i=Number(b.dataset.i);opts.querySelectorAll('button').forEach((x,j)=>{x.disabled=true;if(j===item.a)x.classList.add('correct');else if(j===i)x.classList.add('wrong')});if(i===item.a)score++;next.disabled=false;prog.textContent=`Score: ${score}`;q.insertAdjacentHTML('beforeend',`<p class="small-note"><strong>Why:</strong> ${item.e}</p>`)}));}
+function finishQuiz(){const q=document.getElementById('quiz-question'),opts=document.getElementById('quiz-options'),next=document.getElementById('quiz-next');if(q){q.innerHTML=`<div class="eyebrow">Demo complete</div><h3>${score} / ${phishing.length} correct</h3><p class="small-note">The repository contains 10 awareness scenarios. This browser demonstration shows the interaction pattern without pretending to execute the Python CLI.</p>`;opts.innerHTML='<a class="btn primary" href="https://github.com/Rohit30Confluence/CodeAlpha_CyberSecurity" target="_blank">Inspect the implementation ↗</a>';next.style.display='none';}}
+function initQuiz(){const next=document.getElementById('quiz-next');if(!next)return;renderQuiz();next.addEventListener('click',()=>{qi++;if(qi>=phishing.length)finishQuiz();else renderQuiz()});}
+function initIds(){const el=document.getElementById('ids-output');if(!el)return;el.textContent='09/08/2026-10:42:11.102 [**] [1:1000001:1] CODEALPHA LAB Connection to monitored administrative service\n09/08/2026-10:42:11.102 [Classification: Attempted Administrator Privilege Gain] [Priority: 1]\n{TCP} 192.0.2.10:49152 -> 172.28.0.2:445\n\nEVE JSON\n"sid": 1000001, "action": "allowed", "pkt_src": "wire/pcap"';}
+function modal(){const m=document.getElementById('modal'),content=document.getElementById('modal-content');if(!m)return;document.querySelectorAll('[data-open="phish"]').forEach(b=>b.addEventListener('click',()=>{content.innerHTML='<div class="eyebrow">Phishing awareness</div><h2>Quick scenario</h2><p>Open the full Tasks page to run the interactive three-scenario browser demo. The actual repository contains ten scenarios.</p><a class="btn primary" href="tasks.html#phishing">Start demo →</a>';m.classList.add('open')}));m.querySelector('.close').addEventListener('click',()=>m.classList.remove('open'));m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open')})}
+document.addEventListener('DOMContentLoaded',()=>{renderPackets();initQuiz();initIds();modal();});
+
+
+/* Single-file page switching */
+(function() {
+  const buttons = document.querySelectorAll('.site-nav button[data-page]');
+  const pages = document.querySelectorAll('.page-section');
+  function show(id, updateHash=true) {
+    pages.forEach(p => p.classList.toggle('active', p.id === id));
+    buttons.forEach(b => b.classList.toggle('active', b.dataset.page === id));
+    if (updateHash) history.replaceState(null, '', '#' + id);
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+  buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.page)));
+  const initial = location.hash.replace('#','');
+  if ([...pages].some(p => p.id === initial)) show(initial, false);
+})();
+</script>
+</body>
+</html>
