@@ -1,0 +1,6 @@
+{
+  "scan_window_seconds": 60,
+  "scan_port_threshold": 10,
+  "sensitive_ports": [23, 445, 3389],
+  "note": "Tune thresholds to a baseline from your authorised environment."
+}

@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codealpha-cybersecurity"
+version = "1.0.0"
+description = "Defensive implementations of the four CodeAlpha Cyber Security internship tasks"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Rohit30Confluence"}]
+dependencies = []
+
+[project.optional-dependencies]
+capture = ["scapy>=2.5.0"]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+codealpha-security = "codealpha_cybersecurity.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
