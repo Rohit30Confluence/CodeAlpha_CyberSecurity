@@ -25,7 +25,7 @@ def main() -> None:
     else:
         answers: dict[str, bool] = {}
         for s in SCENARIOS:
-            print(f"\n{s.message}\nIs this phishing? [y/n]")
+            print(f"\n[{s.category}]\n{s.message}\nIs this phishing? [y/n]")
             answers[s.id] = input("> ").strip().lower() in {"y", "yes"}
         print(json.dumps(score_answers(answers), indent=2))
 

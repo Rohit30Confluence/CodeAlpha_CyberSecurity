@@ -1,0 +1,28 @@
+%YAML 1.1
+---
+# Minimal lab-only configuration. Do not copy this as a production baseline.
+vars:
+  address-groups:
+    HOME_NET: "[172.28.0.0/16]"
+    EXTERNAL_NET: "!$HOME_NET"
+  port-groups:
+    HTTP_PORTS: "80"
+default-rule-path: /etc/suricata/rules
+default-log-dir: /var/log/suricata
+rule-files:
+  - codealpha.rules
+outputs:
+  - fast:
+      enabled: yes
+      filename: fast.log
+      append: yes
+  - eve-log:
+      enabled: yes
+      filetype: regular
+      filename: eve.json
+      types:
+        - alert:
+            tagged-packets: no
+        - stats:
+            totals: yes
+            threads: no

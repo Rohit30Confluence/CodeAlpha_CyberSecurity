@@ -1,0 +1,13 @@
+services:
+  suricata-config-test:
+    image: oisf/suricata:7.0.8
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ./suricata.yaml:/etc/suricata/suricata.yaml:ro
+      - ./rules:/etc/suricata/rules:ro
+      - ./logs:/var/log/suricata
+    command: ["-T", "-c", "/etc/suricata/suricata.yaml"]
